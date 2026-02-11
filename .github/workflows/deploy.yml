@@ -21,11 +21,11 @@ jobs:
         uses: actions/checkout@v4
 
       # [핵심] sed 명령어로 텍스트 치환
-      # script.js 파일 안에 있는 "YOUR_CLIENT_ID"라는 글자를
+      # script.js 파일 안에 있는 "YOUR_CLIENT_ID_HERE"라는 글자를
       # GitHub Secret에 저장된 실제 키 값으로 바꿔치기 합니다.
       - name: Inject API Key
         run: |
-          sed -i 's/YOUR_CLIENT_ID/${{ secrets.YOUR_CLIENT_ID }}/g' ./js/map.js
+          sed -i 's/YOUR_CLIENT_ID_HERE/${{ secrets.YOUR_CLIENT_ID }}/g' ./js/map.js
         # 만약 js 파일이 js/script.js 처럼 폴더 안에 있다면 경로를 맞춰주세요.
 
       - name: Setup Pages
