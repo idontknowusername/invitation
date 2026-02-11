@@ -41,7 +41,8 @@ scriptMap.onload = () => {
 			size: new naver.maps.Size(48, 48),
 			origin: new naver.maps.Point(0, 0),
 			anchor: new naver.maps.Point(24, 32)
-		}
+		},
+		animation: naver.maps.Animation.BOUNCE
 	});
 
 
@@ -57,7 +58,8 @@ scriptMap.onload = () => {
 			url: './img/marker01_heart.png',
 			size: new naver.maps.Size(48, 48),
 			origin: new naver.maps.Point(0, 0),
-			anchor: new naver.maps.Point(24, 32)
-		}
+			anchor: new naver.maps.Point(24, 32),
+		},
+		animation: naver.maps.Animation.BOUNCE
 	});
 };
