@@ -21,7 +21,7 @@
 }
 
 body {
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Gowun Batang', 'Noto Serif KR', serif;
     background-color: #e0e0e0;
     overflow: hidden;
     /* 초기 스크롤 방지 */
@@ -30,7 +30,7 @@ body {
 
 button {
     cursor: pointer;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
 }
 
 /* 컨테이너 (모바일 뷰) */
@@ -89,8 +89,9 @@ button {
     animation: float 3s ease-in-out infinite;
 }
 
-.yacht-svg {
-    width: 100px;
+.yacht-img {
+    width: 250px;
+    height: auto;
     filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
 }
 
@@ -100,10 +101,16 @@ button {
     text-align: center;
 }
 
+.entrance-text p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
 .entrance-text h1 {
     font-size: 2rem;
     font-weight: 300;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Gowun Batang', serif;
 }
 
 .scroll-hint {
@@ -113,6 +120,7 @@ button {
     font-size: 0.8rem;
     animation: bounce 2s infinite;
     text-align: center;
+    font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
 }
 
 /* --- 3. Main Content (본문) --- */
@@ -173,7 +181,7 @@ button {
 }
 
 .invite-header h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
     font-size: 0.8rem;
     letter-spacing: 2px;
     color: var(--accent);
@@ -201,7 +209,7 @@ button {
 .date-text {
     font-size: 1.8rem;
     color: var(--accent);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
     font-weight: 500;
     margin-bottom: 5px;
     letter-spacing: 1px;
@@ -212,14 +220,14 @@ button {
     color: #888;
     margin-bottom: 30px;
     letter-spacing: 2px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
 }
 
 /* Calendar Style */
 .calendar-area {
     margin: 20px auto 40px;
     max-width: 300px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
 }
 
 .calendar-table {
@@ -258,7 +266,7 @@ button {
 .d-day-counter {
     margin: 30px 0;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
     color: #555;
 }
 
@@ -386,7 +394,7 @@ button {
     color: #555;
     border: 1px solid #e0e0e0;
 
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Gowun Batang', 'Noto Serif KR', serif;
     /* 명조체로 우아함 강조 */
     font-size: 0.95rem;
     letter-spacing: 1px;
