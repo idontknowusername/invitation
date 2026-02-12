@@ -25,9 +25,9 @@ document.head.appendChild(scriptMap);
 scriptMap.onload = () => {
     var mapOptions = {
 		center: new naver.maps.LatLng(37.562495, 126.979730),
-		zoom: 16,
-		maxZoom: 16,
-		minZoom: 16,
+		zoom: 15,
+		maxZoom: 15,
+		minZoom: 15,
 		logoControl: false,
 		mapDataControl: false,
 		scaleControl: false,

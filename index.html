@@ -1,171 +1,179 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta property="og:title" content="박철수💖서영희, 결혼합니다.">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="https://lh3.googleusercontent.com/d/1wpAX2in6-YZlN8WXIhUOpb-vH1MzvqGw">
-	<meta property="og:description" content="7월 11일 12:30 | 한국은행">
-	<link rel="icon" href="https://lh3.googleusercontent.com/d/15lhH93L6iK_rrJrZ6o13CHT-mf4AB0Fu"/> 
-	<link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/15lhH93L6iK_rrJrZ6o13CHT-mf4AB0Fu"/> 
-    <title>초대합니다 💌</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
-	<link href="./css/style.css" rel="stylesheet">
-	<script>
-	  // 문서(HTML)가 완전히 로드된 후 실행
-	  document.addEventListener("DOMContentLoaded", function() {
-		  
-		  // 1. map.js를 실행하는 함수
-		  function loadMapScript() {
-			  var mapScript = document.createElement('script');
-			  mapScript.src = "./js/map.js";
-			  document.body.appendChild(mapScript);
-		  }
+    <meta property="og:title" content="박수호💖서연수, 결혼합니다.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1wpAX2in6-YZlN8WXIhUOpb-vH1MzvqGw">
+    <meta property="og:description" content="7월 11일 12:30 | 한국은행">
+    <link rel="icon" href="https://lh3.googleusercontent.com/d/15lhH93L6iK_rrJrZ6o13CHT-mf4AB0Fu" />
+    <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/15lhH93L6iK_rrJrZ6o13CHT-mf4AB0Fu" />
+    <title>박수호💖서연수 결혼합니다.</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Montserrat:wght@300;500&display=swap"
+        rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <script>
+        // 문서(HTML)가 완전히 로드된 후 실행
+        document.addEventListener("DOMContentLoaded", function () {
 
-		  // 2. 환경 설정 파일(env.js) 로드 시도
-		  var envScript = document.createElement('script');
-		  envScript.src = "./env.js"; 
+            // 1. map.js를 실행하는 함수
+            function loadMapScript() {
+                var mapScript = document.createElement('script');
+                mapScript.src = "./js/map.js";
+                document.body.appendChild(mapScript);
+            }
 
-		  // (로컬 환경) env.js 로드 성공
-		  envScript.onload = function() {
-			  console.log("✅ 로컬 환경 설정이 로드되었습니다.");
-			  loadMapScript(); // 설정 로드 후 -> 지도 실행
-		  };
+            // 2. 환경 설정 파일(env.js) 로드 시도
+            var envScript = document.createElement('script');
+            envScript.src = "./env.js";
 
-		  // (배포 환경) env.js 로드 실패
-		  envScript.onerror = function() {
-			  console.log("🚀 배포 환경: 로컬 설정 파일을 건너뛰고 지도를 실행합니다.");
-			  loadMapScript(); // 설정 실패해도 -> 지도 실행
-		  };
+            // (로컬 환경) env.js 로드 성공
+            envScript.onload = function () {
+                console.log("✅ 로컬 환경 설정이 로드되었습니다.");
+                loadMapScript(); // 설정 로드 후 -> 지도 실행
+            };
 
-		  // 3. HTML 로드 후 실행 시작
-		  document.head.appendChild(envScript);
-	  });
-	</script>
+            // (배포 환경) env.js 로드 실패
+            envScript.onerror = function () {
+                console.log("🚀 배포 환경: 로컬 설정 파일을 건너뛰고 지도를 실행합니다.");
+                loadMapScript(); // 설정 실패해도 -> 지도 실행
+            };
+
+            // 3. HTML 로드 후 실행 시작
+            document.head.appendChild(envScript);
+        });
+    </script>
 </head>
+
 <body>
 
-<div class="container">
-    
-    <div class="main-content" id="mainContent">
-        
-        <div class="invite-header">
-            <br><br>
-            <h2>WEDDING INVITATION</h2>
-            <br>
-            <h1>박철수 <span style="font-size:0.7em; color:#aaa;">&</span> 서영희</h1>
-            <p style="color:#666; font-size:0.95rem; line-height:1.8; margin-top:20px;">
-                저희 두 사람, 사랑으로 하나 되어<br>
-                새로운 인생의 닻을 올립니다.<br>
-                따뜻한 격려와 축복으로<br>
-                저희의 항해를 응원해 주십시오.
-            </p>
-        </div>
+    <div class="container">
 
-        <div class="details-box">
-            <div class="date-text">2026.07.11</div>
-            
-            <div class="d-day-wrapper">
-                <div class="d-day-label">D-day</div>
-                <div id="dDayCounter" class="d-day-counter">00일 00:00:00</div>
+        <div class="main-content" id="mainContent">
+
+            <div class="invite-header">
+                <br><br>
+                <h2 class="scroll-animate">WEDDING INVITATION</h2>
+                <br>
+                <h1 class="scroll-animate">박수호 <span style="font-size:0.7em; color:#aaa;">&</span> 서연수</h1>
+                <p class="scroll-animate" style="color:#666; font-size:0.95rem; line-height:2.0; margin-top:30px;">
+                    저희 두 사람, 사랑으로 하나 되어<br>
+                    새로운 인생의 닻을 올립니다.<br>
+                    따뜻한 격려와 축복으로<br>
+                    저희의 항해를 응원해 주십시오.
+                </p>
             </div>
 
-            <p style="font-weight:bold; margin-bottom:15px; color:#333;">토요일 오후 12시 30분</p>
-            <p style="color:#666; font-size:0.95rem;">ㅇㅇㅇ 호텔 0층 컨퍼런스 홀</p>
-        </div>
-
-        <div class="section" style="padding-top:0; border:none;">
-            <button class="btn" onclick="openModal('contactModal')">📞 혼주에게 연락하기</button>
-        </div>
-
-        <div class="section">
-            <span class="section-title">GALLERY</span>
-            <div class="gallery-grid" id="galleryGrid"></div>
-            <p style="margin-top:15px; font-size:0.8rem; color:#999;">사진을 클릭하면 크게 볼 수 있습니다.</p>
-        </div>
-
-        <div class="section" style="text-align: left;">
-            <center><span class="section-title">LOCATION</span></center>
-            <br>
-            <div class="map-area" id="map">
-                <span>지도 영역 (Naver/Kakao Map)</span>
+            <div class="section" style="padding-top:0; border:none;">
+                <button class="btn scroll-animate" onclick="openModal('contactModal')">📞 혼주에게 연락하기</button>
             </div>
-            
-            <div class="transport-info">
-                <div class="transport-item">
-                    <b>지하철 이용시</b>
-                    2호선 시청역 4번 출구 도보 5분<br>
+
+            <div class="details-box scroll-animate">
+                <div class="date-text">2026.07.11</div>
+                <div class="time-text">토요일 12:30 PM</div>
+                <div id="calendar" class="calendar-area scroll-animate"></div>
+
+                <div id="dDayCounter" class="d-day-counter scroll-animate"></div>
+            </div>
+
+            <div class="section scroll-animate" style="text-align: left;">
+                <center><span class="section-title">LOCATION</span></center>
+                <h2 style="text-align:center; margin-top:15px; margin-bottom:15px;">한국은행 2층 컨퍼런스홀</span></h2><br>
+
+                <div class="map-area" id="map">
+                    <span>지도 영역 (Naver Map)</span>
                 </div>
-                <div class="transport-item">
-                    <b>자가용 / 주차안내</b>
-                    네비게이션: "ㅇㅇㅇ 호텔" 검색<br>
-                    하객 2시간 무료 주차
+
+                <div class="transport-info">
+                    <div class="transport-item">
+                        <b>지하철 이용시</b>
+                        <a style="color:#00B140;">●</a> 2호선 시청역 4번 출구 도보 5분<br>
+                        <a style="color:#00A9E0;">●</a> 4호선 회현역 4번 출구 도보 5분<br>
+                    </div>
+                    <div class="transport-item">
+                        <b>자가용 / 주차안내</b>
+                        네비게이션: 한국은행 검색<br>
+                        하객 2시간 무료 주차
+                    </div>
                 </div>
             </div>
+
+            <div class="details-box scroll-animate">
+                <span class="section-title">GALLERY</span>
+                <div class="gallery-grid" id="galleryGrid"></div>
+                <p style="margin-top:15px; font-size:0.8rem; color:#999;">사진을 클릭하면 크게 볼 수 있습니다.</p>
+            </div>
+
+            <div class="section scroll-animate" id="accountArea" style="border-bottom:none; margin-bottom: 50px;">
+                <span class="section-title">For Your Heart</span>
+                <p style="margin:20px 0; color:#666; font-size:0.9rem; line-height:1.6;">
+                    참석이 어려우신 분들을 위해<br>
+                    마음을 전하실 곳을 남깁니다.
+                </p>
+                <button class="btn" onclick="openModal('accountModal')">💌 마음을 전하는 곳</button>
+            </div>
+
+            <footer style="background:#f4f4f4; padding:30px; text-align:center; font-size:0.8rem; color:#999;">
+                Copyright 2026. Suho & Yeonsoo. All rights reserved.
+            </footer>
         </div>
 
-        <div class="section" id="accountArea" style="border-bottom:none; margin-bottom: 50px;">
-            <span class="section-title">For Your Heart</span>
-            <p style="margin:20px 0; color:#666; font-size:0.9rem; line-height:1.6;">
-                참석이 어려우신 분들을 위해<br>
-                마음을 전하실 곳을 남깁니다.
-            </p>
-            <button class="btn" onclick="openModal('accountModal')">💌 마음을 전하는 곳</button>
-        </div>
-
-        <footer style="background:#f4f4f4; padding:30px; text-align:center; font-size:0.8rem; color:#999;">
-            Copyright 2026. Minsu & Jieun. All rights reserved.
-        </footer>
-    </div>
-
-    <div class="entrance-screen" id="entranceScreen">
-        <div class="wave-top-edge">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-            </svg>
-        </div>
-        <div class="yacht-container">
-            <svg class="yacht-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 L50 60 L80 60 Z" fill="white"/> 
-                <path d="M45 20 L45 60 L15 60 Z" fill="#eee"/>
-                <path d="M15 65 L85 65 C85 65 90 85 50 85 C10 85 15 65 15 65 Z" fill="white"/>
-            </svg>
-        </div>
-        <div class="entrance-text">
-            <p>MINSU & JIEUN</p>
-            <h1>We are<br>Getting Married</h1>
-        </div>
-        <div class="scroll-hint"><p>Scroll Down</p><p>▼</p></div>
-    </div>
-
-    <div id="contactModal" class="modal-overlay" onclick="closeModal('contactModal')">
-        <div class="modal-box" onclick="event.stopPropagation()">
-            <button class="modal-close-btn" onclick="closeModal('contactModal')">&times;</button>
-            <div class="modal-title">연락하기</div>
-            <div class="contact-list">
-                <div class="list-row"><span>신랑 박철수</span><a href="tel:010-0000-0000">📞</a></div>
-                <div class="list-row"><span>신부 서영희</span><a href="tel:010-0000-0000">📞</a></div>
+        <div class="entrance-screen" id="entranceScreen">
+            <div class="wave-bottom-edge">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill-opacity="1"
+                        d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+                    </path>
+                </svg>
+            </div>
+            <div class="yacht-container">
+                <svg class="yacht-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L50 60 L80 60 Z" fill="white" />
+                    <path d="M45 20 L45 60 L15 60 Z" fill="#eee" />
+                    <path d="M15 65 L85 65 C85 65 90 85 50 85 C10 85 15 65 15 65 Z" fill="white" />
+                </svg>
+            </div>
+            <div class="entrance-text">
+                <p>SUHO & YEONSU</p>
+                <h1>We are<br>Getting Married</h1>
+            </div>
+            <div class="scroll-hint">
+                <p>Scroll Down</p>
+                <p>▼</p>
             </div>
         </div>
-    </div>
 
-    <div id="accountModal" class="modal-overlay" onclick="closeModal('accountModal')">
-        <div class="modal-box" onclick="event.stopPropagation()">
-            <button class="modal-close-btn" onclick="closeModal('accountModal')">&times;</button>
-            <div class="modal-title">계좌번호</div>
-            <div class="account-list">
-                <div class="list-row"><span>국민 123-456 (홍길동)</span><button class="copy-btn">복사</button></div>
+        <div id="contactModal" class="modal-overlay" onclick="closeModal('contactModal')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <button class="modal-close-btn" onclick="closeModal('contactModal')">&times;</button>
+                <div class="modal-title">연락하기</div>
+                <div class="contact-list">
+                    <div class="list-row"><span>신랑 박수호</span><a href="tel:010-0000-0000">📞</a></div>
+                    <div class="list-row"><span>신부 서연수</span><a href="tel:010-0000-0000">📞</a></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="lightbox" class="modal-overlay" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightboxImg" class="lightbox-img" src="" alt="Full Image">
+        <div id="accountModal" class="modal-overlay" onclick="closeModal('accountModal')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <button class="modal-close-btn" onclick="closeModal('accountModal')">&times;</button>
+                <div class="modal-title">계좌번호</div>
+                <div class="account-list">
+                    <div class="list-row"><span>국민 123-456 (홍길동)</span><button class="copy-btn">복사</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lightbox" class="modal-overlay" onclick="closeLightbox()">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightboxImg" class="lightbox-img" src="" alt="Full Image">
+        </div>
     </div>
-</div>
-<script src="./js/contents.js"> </script>
+    <script src="./js/contents.js"> </script>
 
 </body>
+
 </html>
