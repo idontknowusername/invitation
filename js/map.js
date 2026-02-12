@@ -26,9 +26,14 @@ scriptMap.onload = () => {
     var mapOptions = {
 		center: new naver.maps.LatLng(37.562495, 126.979730),
 		zoom: 16,
+		maxZoom: 16,
+		minZoom: 16,
 		logoControl: false,
 		mapDataControl: false,
-		scaleControl: false
+		scaleControl: false,
+		draggable: false,
+		pinchZoom: false,
+		scrollWheel: false
 	};
 
 	var map = new naver.maps.Map(document.getElementById('map'), mapOptions);
