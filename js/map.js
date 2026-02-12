@@ -33,29 +33,11 @@ scriptMap.onload = () => {
 
 	var map = new naver.maps.Map(document.getElementById('map'), mapOptions);
 
-	var marker_tmp1 = new naver.maps.Marker({
-		position: new naver.maps.LatLng(37.562495, 126.982),
-		map: map,
-		icon: {
-			url: './img/marker03_heartMsg.png',
-			size: new naver.maps.Size(48, 48),
-			origin: new naver.maps.Point(0, 0),
-			anchor: new naver.maps.Point(24, 32)
-		},
-		animation: naver.maps.Animation.BOUNCE
-	});
-
-
-	var marker_tmp = new naver.maps.Marker({
-		position: new naver.maps.LatLng(37.56, 126.977),
-		map: map
-	});
-
 	var marker = new naver.maps.Marker({
 		position: new naver.maps.LatLng(37.562495, 126.979730),
 		map: map,
 		icon: {
-			url: './img/marker01_heart.png',
+			url: './img/marker01.png',
 			size: new naver.maps.Size(48, 48),
 			origin: new naver.maps.Point(0, 0),
 			anchor: new naver.maps.Point(24, 32),
