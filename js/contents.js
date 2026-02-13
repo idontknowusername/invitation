@@ -1,3 +1,27 @@
+// --- 0. 환경설정 데이터 로드 ---
+function loadConfigData() {
+    // env.js가 로드되지 않았을 경우를 대비한 기본값 설정 (혹은 빈 문자열)
+    const groomName = window.LOCAL_GROOM_NAME || "신랑기본";
+    const brideName = window.LOCAL_BRIDE_NAME || "신부기본";
+    const groomNameEn = window.LOCAL_GROOM_NAME_EN || "GRDef";
+    const brideNameEn = window.LOCAL_BRIDE_NAME_EN || "BRDef";
+
+    // 1. 텍스트 콘텐츠 교체
+    document.querySelectorAll('.groom-name').forEach(el => el.textContent = groomName);
+    document.querySelectorAll('.bride-name').forEach(el => el.textContent = brideName);
+    document.querySelectorAll('.groom-name-en').forEach(el => el.textContent = groomNameEn);
+    document.querySelectorAll('.bride-name-en').forEach(el => el.textContent = brideNameEn);
+
+    // 2. 메타 태그 및 타이틀 교체 (SEO에는 반영되지 않을 수 있음)
+    document.title = `${groomName}💖${brideName} 결혼합니다.`;
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.content = `${groomName}💖${brideName}, 결혼합니다.`;
+}
+
+// DOM 로드 시 즉시 실행 (contents.js는 body 끝에 있으므로 즉시 실행해도 됨)
+loadConfigData();
+
 // --- 1. 실시간 D-Day 카운터 ---
 const weddingDate = new Date("2026-07-11T12:30:00");
 const dDayElement = document.getElementById("dDayCounter");
@@ -110,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isOpened = false;
 
     const params = new URLSearchParams(window.location.search);
-    if (params.has('visit')) {
+    if (params.has('은행')) {
         const acc = document.getElementById('accountArea');
         if (acc) acc.style.display = 'none';
     }
@@ -132,6 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('touchmove', (e) => {
         if (!isOpened && ts - e.touches[0].clientY > 50) triggerOpening();
     }, { passive: true });
+    // 3초 후 애니메이션 자동 재생
+    setTimeout(triggerOpening, 3000);
 
     // Scroll Animation (IntersectionObserver)
     const observerOptions = {

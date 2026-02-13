@@ -28,24 +28,37 @@
                 document.body.appendChild(mapScript);
             }
 
-            // 2. 환경 설정 파일(env.js) 로드 시도
-            var envScript = document.createElement('script');
-            envScript.src = "./env.js";
-
-            // (로컬 환경) env.js 로드 성공
-            envScript.onload = function () {
-                console.log("✅ 로컬 환경 설정이 로드되었습니다.");
-                loadMapScript(); // 설정 로드 후 -> 지도 실행
-            };
-
-            // (배포 환경) env.js 로드 실패
-            envScript.onerror = function () {
-                console.log("🚀 배포 환경: 로컬 설정 파일을 건너뛰고 지도를 실행합니다.");
-                loadMapScript(); // 설정 실패해도 -> 지도 실행
-            };
-
-            // 3. HTML 로드 후 실행 시작
-            document.head.appendChild(envScript);
+            // 2. 환경 설정 파일 로드 함수 (env.local.js -> env.js 순서로 시도)
+            function loadEnvConfig() {
+                var envLocalScript = document.createElement('script');
+                envLocalScript.src = "./env.local.js";
+                // (1) env.local.js 로드 성공
+                envLocalScript.onload = function () {
+                    console.log("✅ 로컬 환경 설정이 로드되었습니다.");
+                    if (window.loadConfigData) window.loadConfigData();
+                    loadMapScript();
+                };
+                // (2) env.local.js 로드 실패 -> env.js 시도
+                envLocalScript.onerror = function () {
+                    console.log("⚠️ env.local.js 로드 실패. 배포 환경 설정을 불러옵니다.");
+                    var envScript = document.createElement('script');
+                    envScript.src = "./env.js";
+                    envScript.onload = function () {
+                        console.log("✅ 배포 환경 설정이 로드되었습니다.");
+                        if (window.loadConfigData) window.loadConfigData();
+                        loadMapScript();
+                    };
+                    envScript.onerror = function () {
+                        console.log("❌ 환경 설정 파일 로드 실패. 기본값을 사용합니다.");
+                        if (window.loadConfigData) window.loadConfigData();
+                        loadMapScript();
+                    };
+                    document.head.appendChild(envScript);
+                };
+                document.head.appendChild(envLocalScript);
+            }
+            // 3. 설정 파일 로드 시작
+            loadEnvConfig();
         });
     </script>
 </head>
@@ -60,7 +73,8 @@
                 <br><br>
                 <h2 class="scroll-animate">WEDDING INVITATION</h2>
                 <br>
-                <h1 class="scroll-animate">박수호 <span style="font-size:0.7em; color:#aaa;">&</span> 서연수</h1>
+                <h1 class="scroll-animate"><span class="groom-name">홍길동</span> <span
+                        style="font-size:0.7em; color:#aaa;">&</span> <span class="bride-name">홍길순</span></h1>
                 <p class="scroll-animate" style="color:#666; font-size:0.95rem; line-height:2.0; margin-top:30px;">
                     저희 두 사람, 사랑으로 하나 되어<br>
                     새로운 인생의 닻을 올립니다.<br>
@@ -83,7 +97,9 @@
 
             <div class="section scroll-animate" style="text-align: left;">
                 <center><span class="section-title">LOCATION</span></center>
-                <h2 style="text-align:center; margin-top:15px; margin-bottom:15px;">한국은행 2층 컨퍼런스홀</span></h2><br>
+                <h2 style="text-align:center; margin-top:15px; margin-bottom:10px;">한국은행 2층 컨퍼런스홀</span></h2>
+                <h3 style="text-align:center; margin-bottom:15px; color:#999">서울 중구 남대문로 39</span></h3>
+                <br>
 
                 <div class="map-area" id="map">
                     <span>지도 영역 (Naver Map)</span>
@@ -92,8 +108,8 @@
                 <div class="transport-info">
                     <div class="transport-item">
                         <b>지하철 이용시</b>
-                        <a style="color:#00B140;">●</a> 2호선 시청역 4번 출구 도보 5분<br>
-                        <a style="color:#00A9E0;">●</a> 4호선 회현역 4번 출구 도보 5분<br>
+                        <a style="color:#00B140;">●</a> 2호선 시청역 4번 출구 도보 7분<br>
+                        <a style="color:#00A9E0;">●</a> 4호선 회현역 4번 출구 도보 7분<br>
                     </div>
                     <div class="transport-item">
                         <b>자가용 / 주차안내</b>
@@ -119,7 +135,8 @@
             </div>
 
             <footer style="background:#f4f4f4; padding:30px; text-align:center; font-size:0.8rem; color:#999;">
-                Copyright 2026. Suho & Yeonsoo. All rights reserved.
+                Copyright 2026. <span class="groom-name-en">Gildong</span> & <span class="bride-name-en">Gilsoon</span>.
+                All rights reserved.
             </footer>
         </div>
 
@@ -136,8 +153,8 @@
                     alt="Main Image">
             </div>
             <div class="entrance-text">
-                <p>Von Voyage</p>
-                <h1>연수호의<br>항해가 시작됩니다♥️</h1>
+                <p>Bon Voyage</p>
+                <h1>연수호의<br>항해에 함께해주세요♥️</h1>
             </div>
             <div class="scroll-hint">
                 <p>Scroll Down</p>
@@ -150,8 +167,10 @@
                 <button class="modal-close-btn" onclick="closeModal('contactModal')">&times;</button>
                 <div class="modal-title">연락하기</div>
                 <div class="contact-list">
-                    <div class="list-row"><span>신랑 박수호</span><a href="tel:010-0000-0000">📞</a></div>
-                    <div class="list-row"><span>신부 서연수</span><a href="tel:010-0000-0000">📞</a></div>
+                    <div class="list-row"><span>신랑 <span class="groom-name">홍길동</span></span><a
+                            href="tel:010-0000-0000">📞</a></div>
+                    <div class="list-row"><span>신부 <span class="bride-name">홍길순</span></span><a
+                            href="tel:010-0000-0000">📞</a></div>
                 </div>
             </div>
         </div>

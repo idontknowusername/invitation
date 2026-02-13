@@ -292,7 +292,7 @@ button {
 
 .timer-numbers .num {
     display: inline-block;
-    width: 24px;
+    width: 30px;
     /* 숫자가 흔들리지 않도록 고정 너비 할당 */
     text-align: center;
 }
