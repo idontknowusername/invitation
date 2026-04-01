@@ -36,6 +36,17 @@ jobs:
             sed -i 's|MY_BRIDE_NAME_EN|${{ secrets.MY_BRIDE_NAME_EN }}|g' env.js
             sed -i 's|MY_GROOM_NAME|${{ secrets.MY_GROOM_NAME }}|g' env.js
             sed -i 's|MY_BRIDE_NAME|${{ secrets.MY_BRIDE_NAME }}|g' env.js
+            sed -i 's|MY_GROOM_ACC|${{ secrets.MY_GROOM_ACC }}|g' env.js
+            sed -i 's|MY_BRIDE_ACC|${{ secrets.MY_BRIDE_ACC }}|g' env.js
+            
+            sed -i 's|MY_GROOM_DAD_NAME|${{ secrets.MY_GROOM_DAD_NAME }}|g' env.js
+            sed -i 's|MY_GROOM_DAD_ACC|${{ secrets.MY_GROOM_DAD_ACC }}|g' env.js
+            sed -i 's|MY_GROOM_MOM_NAME|${{ secrets.MY_GROOM_MOM_NAME }}|g' env.js
+            sed -i 's|MY_GROOM_MOM_ACC|${{ secrets.MY_GROOM_MOM_ACC }}|g' env.js
+            sed -i 's|MY_BRIDE_DAD_NAME|${{ secrets.MY_BRIDE_DAD_NAME }}|g' env.js
+            sed -i 's|MY_BRIDE_DAD_ACC|${{ secrets.MY_BRIDE_DAD_ACC }}|g' env.js
+            sed -i 's|MY_BRIDE_MOM_NAME|${{ secrets.MY_BRIDE_MOM_NAME }}|g' env.js
+            sed -i 's|MY_BRIDE_MOM_ACC|${{ secrets.MY_BRIDE_MOM_ACC }}|g' env.js
             
             echo "✅ env.js 치환 완료"
             
