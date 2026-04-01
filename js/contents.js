@@ -1,16 +1,38 @@
 // --- 0. 환경설정 데이터 로드 ---
 function loadConfigData() {
     // env.js가 로드되지 않았을 경우를 대비한 기본값 설정 (혹은 빈 문자열)
-    const groomName = window.LOCAL_GROOM_NAME || "신랑기본";
-    const brideName = window.LOCAL_BRIDE_NAME || "신부기본";
-    const groomNameEn = window.LOCAL_GROOM_NAME_EN || "GRDef";
-    const brideNameEn = window.LOCAL_BRIDE_NAME_EN || "BRDef";
+    const groomName = window.LOCAL_GROOM_NAME || "홍길동";
+    const brideName = window.LOCAL_BRIDE_NAME || "홍길순";
+    const groomNameEn = window.LOCAL_GROOM_NAME_EN || "John Doe";
+    const brideNameEn = window.LOCAL_BRIDE_NAME_EN || "Jane Doe";
+	const groomAccount = window.LOCAL_GROOM_ACC || "국민 123-456";
+	const brideAccount = window.LOCAL_BRIDE_ACC || "국민 789-012";
+	
+	const groomDadName = window.LOCAL_GROOM_DAD_NAME || "김철수";
+    const groomMomName = window.LOCAL_GROOM_MOM_NAME || "김영희";
+	const groomDadAccount = window.LOCAL_GROOM_DAD_ACC || "IM뱅크 000-000";
+	const groomMomAccount = window.LOCAL_GROOM_MOM_ACC || "IBK기업은행 000-000";
+	const brideDadName = window.LOCAL_BRIDE_DAD_NAME || "이몽룡";
+    const brideMomName = window.LOCAL_BRIDE_MOM_NAME || "성춘향";
+	const brideDadAccount = window.LOCAL_BRIDE_DAD_ACC || "농협 000-000";
+	const brideMomAccount = window.LOCAL_BRIDE_MOM_ACC || "뱅크오브아메리카 000-000";
 
     // 1. 텍스트 콘텐츠 교체
     document.querySelectorAll('.groom-name').forEach(el => el.textContent = groomName);
     document.querySelectorAll('.bride-name').forEach(el => el.textContent = brideName);
     document.querySelectorAll('.groom-name-en').forEach(el => el.textContent = groomNameEn);
     document.querySelectorAll('.bride-name-en').forEach(el => el.textContent = brideNameEn);
+	document.querySelectorAll('.groom-account').forEach(el => el.textContent = groomAccount);
+	document.querySelectorAll('.bride-account').forEach(el => el.textContent = brideAccount);
+	
+	document.querySelectorAll('.groom-dad-name').forEach(el => el.textContent = groomDadName);
+    document.querySelectorAll('.groom-mom-name').forEach(el => el.textContent = groomMomName);
+	document.querySelectorAll('.groom-dad-account').forEach(el => el.textContent = groomDadAccount);
+	document.querySelectorAll('.groom-mom-account').forEach(el => el.textContent = groomMomAccount);
+	document.querySelectorAll('.bride-dad-name').forEach(el => el.textContent = brideDadName);
+    document.querySelectorAll('.bride-mom-name').forEach(el => el.textContent = brideMomName);
+	document.querySelectorAll('.bride-dad-account').forEach(el => el.textContent = brideDadAccount);
+	document.querySelectorAll('.bride-mom-account').forEach(el => el.textContent = brideMomAccount);
 
     // 2. 메타 태그 및 타이틀 교체 (SEO에는 반영되지 않을 수 있음)
     document.title = `${groomName}💖${brideName} 결혼합니다.`;
@@ -21,6 +43,112 @@ function loadConfigData() {
 
 // DOM 로드 시 즉시 실행 (contents.js는 body 끝에 있으므로 즉시 실행해도 됨)
 loadConfigData();
+
+// --- 0. 화면 파티클 ---
+function initGreenLeaves() {
+    var canvas = document.getElementById('particles');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var PARTICLE_COUNT = 10;
+    var particles = [];
+
+    // 여름 나뭇잎 색상 배열로 교체
+    var tints = [
+        { base: 'rgb(85, 170, 85)', tip1: 'rgb(120, 200, 100)', tip2: 'rgba(120, 200, 100, 0.7)', vein: 'rgba(50, 120, 50, 0.4)' },
+        { base: 'rgb(60, 150, 60)', tip1: 'rgb(100, 180, 80)',  tip2: 'rgba(100, 180, 80, 0.7)',  vein: 'rgba(40, 100, 40, 0.4)' },
+        { base: 'rgb(110, 190, 70)', tip1: 'rgb(150, 220, 90)', tip2: 'rgba(150, 220, 90, 0.7)', vein: 'rgba(70, 140, 40, 0.4)' }
+    ];
+
+    function resetParticle(p, isInitial) {
+        p.x = Math.random() * canvas.width;
+        p.y = isInitial ? Math.random() * canvas.height : -10 - Math.random() * 20;
+        p.size = 10 + Math.random() * 12;
+        p.speedY = 1.0 + Math.random() * 1.2; // 벚꽃보다 낙하 속도 증가
+        p.speedX = -0.5 + Math.random() * 1.0;
+        p.angle = Math.random() * Math.PI * 2;
+        p.angleSpeed = 0.01 + Math.random() * 0.04; // 회전 속도 증가
+        p.flipAngle = Math.random() * Math.PI * 2;
+        p.flipSpeed = 0.04 + Math.random() * 0.06; // 펄럭임 속도 증가
+        p.swingAmp = 30 + Math.random() * 50;
+        p.swingSpeed = 0.008 + Math.random() * 0.015;
+        p.swingOffset = Math.random() * Math.PI * 2;
+        p.opacity = 0.7 + Math.random() * 0.3; // 투명도를 낮춤(더 선명하게)
+        p.tint = Math.floor(Math.random() * 3);
+        return p;
+    }
+
+    for (var i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(resetParticle({}, true));
+    }
+
+    function drawParticle(p) {
+        ctx.save();
+        var swingX = Math.sin(p.swingOffset) * p.swingAmp * 0.3;
+        ctx.translate(p.x + swingX, p.y);
+        ctx.rotate(p.angle);
+
+        var flipScale = Math.cos(p.flipAngle);
+        ctx.scale(flipScale, 1);
+        ctx.globalAlpha = p.opacity;
+
+        var s = p.size;
+        var t = tints[p.tint];
+
+        // 기존 벚꽃잎 모양 유지 (나뭇잎으로도 자연스럽게 보임)
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(s * 0.45, -s * 0.25, s * 0.5, -s * 0.6, s * 0.2, -s * 0.9);
+        ctx.quadraticCurveTo(s * 0.08, -s * 0.82, 0, -s * 0.85);
+        ctx.quadraticCurveTo(-s * 0.08, -s * 0.82, -s * 0.2, -s * 0.9);
+        ctx.bezierCurveTo(-s * 0.5, -s * 0.6, -s * 0.45, -s * 0.25, 0, 0);
+        ctx.closePath();
+
+        var grad = ctx.createLinearGradient(0, 0, 0, -s);
+        grad.addColorStop(0, t.base);
+        grad.addColorStop(0.6, t.tip1);
+        grad.addColorStop(1, t.tip2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(0, -s * 0.1);
+        ctx.quadraticCurveTo(s * 0.02, -s * 0.55, 0, -s * 0.85);
+        ctx.strokeStyle = t.vein;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.angle += p.angleSpeed;
+            p.flipAngle += p.flipSpeed;
+            p.swingOffset += p.swingSpeed;
+
+            if (p.y > canvas.height + 20 || p.x < -50 || p.x > canvas.width + 50) {
+                resetParticle(p, false); 
+            }
+
+            drawParticle(p);
+        }
+        requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+initGreenLeaves();	// 파티클 init
 
 // --- 1. 실시간 D-Day 카운터 ---
 const weddingDate = new Date("2026-07-11T12:30:00");

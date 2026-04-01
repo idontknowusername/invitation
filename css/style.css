@@ -538,3 +538,13 @@ button {
         transform: translateY(-5px);
     }
 }
+
+.ending {
+	background-color: #3E3A36;
+}
+
+#particles {
+	position: relative;
+	z-index: 2;
+	pointer-events: none;
+}

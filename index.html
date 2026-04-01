@@ -64,11 +64,12 @@
 </head>
 
 <body>
-
+	
     <div class="container">
-
+		<canvas id="particles"></canvas>
         <div class="main-content" id="mainContent">
 
+			<!-- 최상단헤더 -->
             <div class="invite-header">
                 <br><br>
                 <h2 class="scroll-animate">WEDDING INVITATION</h2>
@@ -87,6 +88,7 @@
                 <button class="btn scroll-animate" onclick="openModal('contactModal')">📞 혼주에게 연락하기</button>
             </div>
 
+			<!-- 일시 및 달력 -->
             <div class="details-box scroll-animate">
                 <div class="date-text">2026.07.11</div>
                 <div class="time-text">토요일 12:30 PM</div>
@@ -95,6 +97,7 @@
                 <div id="dDayCounter" class="d-day-counter scroll-animate"></div>
             </div>
 
+			<!-- 지도 및 위치정보 -->
             <div class="section scroll-animate" style="text-align: left;">
                 <center><span class="section-title">LOCATION</span></center>
                 <h2 style="text-align:center; margin-top:15px; margin-bottom:10px;">한국은행 2층 컨퍼런스홀</span></h2>
@@ -113,26 +116,44 @@
                     </div>
                     <div class="transport-item">
                         <b>자가용 / 주차안내</b>
-                        네비게이션: 한국은행 검색<br>
-                        하객 2시간 무료 주차
+                        🧭 네비게이션: 한국은행 검색(서울 중구 남대문로 39)<br>
+                        🅿️ 지하 2층 방문객 전용 주차장
+						<br>(공간이 협소하여 가급적 대중교통 이용 부탁드립니다)
                     </div>
                 </div>
             </div>
 
-            <div class="details-box scroll-animate">
+			<!-- 여기에 예식 관련 정보(배차 등) -->
+			<div class="details-box scroll-animate">
+			</div>
+
+            <div class="section scroll-animate">
                 <span class="section-title">GALLERY</span>
                 <div class="gallery-grid" id="galleryGrid"></div>
                 <p style="margin-top:15px; font-size:0.8rem; color:#999;">사진을 클릭하면 크게 볼 수 있습니다.</p>
             </div>
 
-            <div class="section scroll-animate" id="accountArea" style="border-bottom:none; margin-bottom: 50px;">
+			<!-- 계좌번호: 파라미터 변수명으로 숨기기 가능 -->
+            <div class="details-box scroll-animate" id="accountArea" style="border-bottom:none;">
                 <span class="section-title">For Your Heart</span>
                 <p style="margin:20px 0; color:#666; font-size:0.9rem; line-height:1.6;">
                     참석이 어려우신 분들을 위해<br>
                     마음을 전하실 곳을 남깁니다.
                 </p>
-                <button class="btn" onclick="openModal('accountModal')">💌 마음을 전하는 곳</button>
+                <button class="btn" onclick="openModal('accountModalGroom')">신 랑 측</button>
+				<button class="btn" onclick="openModal('accountModalBride')">신 부 측</button>
             </div>
+
+			<!-- 엔딩크레딧 -->
+			<div class="ending section scroll-animate">
+				<p style="margin:20px 0; color:#ed8aa8; font-size:1.5rem; line-height:1.6;"><br><br><br>
+                    <a class="groom-name">홍길동</a> ♥ <a class="bride-name">홍길순</a><br>
+					<a style="color:#cbcbcb; font-size:1.1rem;">2026년 7월 11일 토요일</a><br>
+                </p>
+				<p style="margin:20px 0; line-height:1.6; color:#fff; font-size:1.3rem;">
+				감사합니다
+				</p><br><br><br>
+			</div>
 
             <footer style="background:#f4f4f4; padding:30px; text-align:center; font-size:0.8rem; color:#999;">
                 Copyright 2026. <span class="groom-name-en">Gildong</span> & <span class="bride-name-en">Gilsoon</span>.
@@ -175,12 +196,26 @@
             </div>
         </div>
 
-        <div id="accountModal" class="modal-overlay" onclick="closeModal('accountModal')">
+        <div id="accountModalGroom" class="modal-overlay" onclick="closeModal('accountModalGroom')">
             <div class="modal-box" onclick="event.stopPropagation()">
-                <button class="modal-close-btn" onclick="closeModal('accountModal')">&times;</button>
+                <button class="modal-close-btn" onclick="closeModal('accountModalGroom')">&times;</button>
                 <div class="modal-title">계좌번호</div>
                 <div class="account-list">
-                    <div class="list-row"><span>국민 123-456 (홍길동)</span><button class="copy-btn">복사</button></div>
+                    <div class="list-row"><span class="groom-account">국민 000-000</span><span>(&nbsp;<a class="groom-name">홍길동</a>&nbsp;)</span><button class="copy-btn">복사</button></div>
+					<div class="list-row"><span class="groom-dad-account">국민 000-000</span><span>(&nbsp;<a class="groom-dad-name">김철수</a>&nbsp;)</span><button class="copy-btn">복사</button></div>
+					<div class="list-row"><span class="groom-mom-account">국민 000-000</span><span>(&nbsp;<a class="groom-mom-name">김영희</a>&nbsp;)</span><button class="copy-btn">복사</button></div>
+                </div>
+            </div>
+        </div>
+
+		<div id="accountModalBride" class="modal-overlay" onclick="closeModal('accountModalBride')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <button class="modal-close-btn" onclick="closeModal('accountModalBride')">&times;</button>
+                <div class="modal-title">계좌번호</div>
+                <div class="account-list">
+                    <div class="list-row"><span class="bride-account">국민 000-000</span><span>(&nbsp;<a class="bride-name">홍길순</a>&nbsp;)</span><button class="copy-btn">복사</button></div>
+					<div class="list-row"><span class="bride-dad-account">국민 000-000</span><span>(&nbsp;<a class="bride-dad-name">이몽룡</a>&nbsp;)</span><button class="copy-btn">복사</button></div>
+					<div class="list-row"><span class="bride-mom-account">국민 000-000</span><span>(&nbsp;<a class="bride-mom-name">성춘향</a>&nbsp;)</span><button class="copy-btn">복사</button></div>
                 </div>
             </div>
         </div>
