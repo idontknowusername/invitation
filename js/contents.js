@@ -228,11 +228,19 @@ function generateCalendar() {
 }
 generateCalendar();
 
+// --- 갤러리 생성을 위한 이미지 URL set ---
+const prefix = "https://lh3.googleusercontent.com/d/";
+const galleryImgs = [
+	"1viYAbQcIhvBrajbfDOuhV7zLK1yvtoZu", "1g_X2nyORCypt1SueDeR1A27UCdygjeX1", "1L_ffV-drl2SJ15P1WojPqTJdkv3hjOCy",
+	"1oisMZ6ydAX901qU5eUSVTXTP_feSpVcp", "1TMWZNqVVLmuo9YIq7Ww_4fRilPsj4rbR", "1EeFn-GoGc3eXtNEgwQ8BJvJ3lDu-qrQ6",
+	"15a-UfJvRs3iCY1DuU7Z8VUJ81sKJBTlg", "1v5eYfqj479uK_ndM_JDYdG2uQZjRf0TL", "1PC8Kqz0-hzj-EFdNODLVC6pOQ1qTGhRp",
+	"1DnlLc9YtbdUopzMwhCXqlp8cscmPHqg8", "1Mx5OTn-klbXo2BW75WIerCTd0PcTN4dx", "1BisJMUo76zMx8KskGT7ggkkp3j7m6Av0"
+	]
 
 // --- 3. 갤러리 생성 ---
 const galleryGrid = document.getElementById('galleryGrid');
 if (galleryGrid) {
-    const imageUrls = Array.from({ length: 12 }, (_, i) => `https://picsum.photos/500/500?random=${i}`);
+    const imageUrls = Array.from({ length: 12 }, (_, i) => `${prefix}${galleryImgs[i]}`);
     imageUrls.forEach(url => {
         const div = document.createElement('div');
         div.className = 'gallery-item';
@@ -306,4 +314,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const animateElements = document.querySelectorAll('.scroll-animate');
     animateElements.forEach(el => observer.observe(el));
+});
+
+// 문서가 완전히 로드된 후 실행
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.querySelector('.info-slider');
+    if (!slider) return; // 슬라이더가 없으면 종료
+
+    const slides = slider.querySelectorAll('.info-slide');
+
+    // 현재 중앙에 가장 가까운 슬라이드를 찾아 활성화하는 함수
+    function updateActiveSlide() {
+        const sliderRect = slider.getBoundingClientRect();
+        // 슬라이더의 시각적 중앙 X 좌표
+        const sliderCenterX = sliderRect.left + (sliderRect.width / 2);
+        
+        let closestSlide = null;
+        let minDistance = Infinity;
+
+        slides.forEach(slide => {
+            const slideRect = slide.getBoundingClientRect();
+            // 각 슬라이드의 중앙 X 좌표
+            const slideCenterX = slideRect.left + (slideRect.width / 2);
+            // 슬라이더 중앙과 슬라이드 중앙 사이의 거리
+            const distance = Math.abs(sliderCenterX - slideCenterX);
+
+            // 가장 거리가 가까운 슬라이드를 찾음
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestSlide = slide;
+            }
+        });
+
+        // 가장 가까운 슬라이드에만 'is-active' 클래스 부여
+        if (closestSlide) {
+            slides.forEach(slide => slide.classList.remove('is-active'));
+            closestSlide.classList.add('is-active');
+        }
+    }
+
+    // 최적화를 위해 requestAnimationFrame 사용 (스크롤 끊김 방지)
+    let isTicking = false;
+    slider.addEventListener('scroll', () => {
+        if (!isTicking) {
+            window.requestAnimationFrame(() => {
+                updateActiveSlide();
+                isTicking = false;
+            });
+            isTicking = true;
+        }
+    });
+
+    // 초기 화면 로드 시에도 한 번 실행하여 첫 슬라이드 활성화
+    updateActiveSlide();
 });
