@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animateElements.forEach(el => observer.observe(el));
 });
 
-// 문서가 완전히 로드된 후 실행
+// --- 6. 이미지 슬라이더 제어 ---
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector('.info-slider');
     if (!slider) return; // 슬라이더가 없으면 종료
@@ -367,4 +367,66 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 초기 화면 로드 시에도 한 번 실행하여 첫 슬라이드 활성화
     updateActiveSlide();
+});
+
+// --- 7. html 파싱 및 클립보드 복사 ---
+// 토스트 메시지를 화면에 띄우는 함수
+function showToast(message) {
+	// 1. 새로운 div 요소를 생성합니다.
+	const toast = document.createElement('div');
+	toast.className = 'toast-message';
+	toast.textContent = message;
+	
+	// 2. 생성한 요소를 body에 추가합니다.
+	document.body.appendChild(toast);
+	
+	// 3. 브라우저가 요소를 그릴 시간을 아주 잠깐 준 뒤 'show' 클래스를 추가해 나타나게 합니다.
+	setTimeout(() => {
+		toast.classList.add('show');
+	}, 10);
+	
+	// 4. 2초(2000ms) 뒤에 'show' 클래스를 제거해 서서히 사라지게 합니다.
+	setTimeout(() => {
+		toast.classList.remove('show');
+		
+		// 5. CSS transition(0.3초)이 완전히 끝난 후 DOM에서 요소를 삭제합니다.
+		setTimeout(() => {
+			toast.remove();
+		}, 300);
+	}, 2000); // 2초 동안 메시지 유지
+}
+
+const copyButtons = document.querySelectorAll('.copy-btn');
+
+ copyButtons.forEach(button => {
+	button.addEventListener('click', function() {
+	// 1. 클릭된 버튼의 가장 가까운 부모 컨테이너(.list-row)를 찾습니다.
+	const row = this.closest('.list-row');
+
+	// 2. 해당 컨테이너 안에서 계좌 정보가 담긴 span을 찾습니다.
+	const accountSpan = row.querySelector('.acc-copy');
+
+	if (accountSpan) {
+		// "국민 000-000" 형태의 텍스트를 가져옵니다.
+		const fullText = accountSpan.textContent.trim();
+		
+		// 3. 스페이스바(' ')를 기준으로 문자열을 나눕니다.
+		// 은행 이름에 띄어쓰기가 있을 경우를 대비해 pop()을 사용하여 가장 마지막 요소(숫자 부분)를 가져옵니다.
+		let accountNumberPart = fullText.split(' ').pop(); 
+		
+		// 4. 정규식을 사용하여 대시(-)를 모두 빈 문자열로 치환(제거)합니다.
+		const finalAccountNumber = accountNumberPart.replace(/-/g, '');
+		
+		// 5. 클립보드 API를 사용하여 가공된 숫자만 복사합니다.
+		navigator.clipboard.writeText(finalAccountNumber)
+			.then(() => {
+			// 복사 성공 시 실행될 코드
+			showToast('복사되었습니다');
+			})
+			.catch(err => {
+			// 복사 실패 시 예외 처리
+			showToast('복사실패');
+			});
+		}
+	});
 });

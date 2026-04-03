@@ -505,6 +505,11 @@ button {
     margin-right: 5px;
 }
 
+.list-row a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .copy-btn {
     background: #f0f0f0;
     border: none;
@@ -658,11 +663,21 @@ button {
 .info-slide-check {
     font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
     font-size: 0.9rem;
-	font-weight: bold;
     line-height: 1.8;
     color: #666;
-    margin-bottom: 20px;
     text-align: left;
+	padding: 12px 20px;
+    margin: 10px 0;
+
+    /* 디자인 변경: 종이 질감 느낌의 미니멀 버튼 */
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+
+    /* 명조체로 우아함 강조 */
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    text-decoration: none;
 }
 
 .info-slide-btn {
@@ -677,4 +692,31 @@ button {
     color: #555;
     border: 1px solid #eaeaea;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.acc-name {
+	margin-left: auto;
+	padding-right: 12px;
+}
+
+/* 토스트 알림 기본 스타일 */
+.toast-message {
+	position: fixed;
+	top: 20px; /* 화면 상단에서 20px 띄움 */
+	left: 50%; /* 가로 중앙 정렬을 위한 설정 */
+	transform: translateX(-50%); /* 가로 중앙 정렬을 위한 설정 */
+	background-color: rgba(0, 0, 0, 0.7); /* 반투명 검은색 배경 */
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 9999; /* 화면 최상단에 표시 */
+	font-size: 14px;
+	opacity: 0; /* 처음에는 투명하게 숨김 */
+	transition: opacity 0.3s ease-in-out; /* 투명도가 0.3초 동안 부드럽게 변함 */
+	pointer-events: none; /* 마우스 클릭을 방해하지 않음 */
+}
+
+/* 토스트 알림이 화면에 보일 때 적용할 클래스 */
+.toast-message.show {
+	opacity: 0.8; /* 투명도를 1로 만들어 화면에 보이게 함 */
 }
