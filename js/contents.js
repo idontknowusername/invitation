@@ -396,37 +396,65 @@ function showToast(message) {
 	}, 2000); // 2초 동안 메시지 유지
 }
 
+// 안전한 클립보드 복사 함수 (Cross-browser & Mobile 대응)
+function copyToClipboard(text) {
+    return new Promise((resolve, reject) => {
+        // 1. 최신 Clipboard API를 지원하고 보안 컨텍스트(HTTPS/localhost)인 경우
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(resolve).catch(reject);
+        } 
+        // 2. 지원하지 않거나 HTTP 환경인 경우 (Fallback 로직)
+        else {
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                
+                // 화면에 보이지 않도록 숨김 처리 및 스크롤 이동 방지
+                textArea.style.position = "absolute";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
+                textArea.setAttribute("readonly", ""); // iOS 키보드 올라옴 방지
+                
+                document.body.appendChild(textArea);
+                textArea.select();
+                textArea.setSelectionRange(0, 99999); // iOS 호환성을 위한 선택 영역 지정
+                
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful) {
+                    resolve();
+                } else {
+                    reject(new Error("execCommand copy failed"));
+                }
+            } catch (err) {
+                reject(err);
+            }
+        }
+    });
+}
+
 const copyButtons = document.querySelectorAll('.copy-btn');
 
- copyButtons.forEach(button => {
-	button.addEventListener('click', function() {
-	// 1. 클릭된 버튼의 가장 가까운 부모 컨테이너(.list-row)를 찾습니다.
-	const row = this.closest('.list-row');
+copyButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const row = this.closest('.list-row');
+        const accountSpan = row.querySelector('.acc-copy');
 
-	// 2. 해당 컨테이너 안에서 계좌 정보가 담긴 span을 찾습니다.
-	const accountSpan = row.querySelector('.acc-copy');
-
-	if (accountSpan) {
-		// "국민 000-000" 형태의 텍스트를 가져옵니다.
-		const fullText = accountSpan.textContent.trim();
-		
-		// 3. 스페이스바(' ')를 기준으로 문자열을 나눕니다.
-		// 은행 이름에 띄어쓰기가 있을 경우를 대비해 pop()을 사용하여 가장 마지막 요소(숫자 부분)를 가져옵니다.
-		let accountNumberPart = fullText.split(' ').pop(); 
-		
-		// 4. 정규식을 사용하여 대시(-)를 모두 빈 문자열로 치환(제거)합니다.
-		const finalAccountNumber = accountNumberPart.replace(/-/g, '');
-		
-		// 5. 클립보드 API를 사용하여 가공된 숫자만 복사합니다.
-		navigator.clipboard.writeText(finalAccountNumber)
-			.then(() => {
-			// 복사 성공 시 실행될 코드
-			showToast('복사되었습니다');
-			})
-			.catch(err => {
-			// 복사 실패 시 예외 처리
-			showToast('복사실패');
-			});
-		}
-	});
+        if (accountSpan) {
+            const fullText = accountSpan.textContent.trim();
+            let accountNumberPart = fullText.split(' ').pop(); 
+            const finalAccountNumber = accountNumberPart.replace(/-/g, '');
+            
+            // 개선된 복사 함수 호출
+            copyToClipboard(finalAccountNumber)
+                .then(() => {
+                    showToast('복사되었습니다');
+                })
+                .catch(err => {
+                    console.error("클립보드 복사 에러:", err);
+                    showToast('복사실패');
+                });
+        }
+    });
 });
