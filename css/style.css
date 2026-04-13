@@ -698,8 +698,19 @@ button {
     margin-left: 7.5%;
 }
 
+/* 1. iOS 버그를 유발하는 마지막 자식 요소의 margin-right 제거 */
 .info-slide:last-child {
-    margin-right: 7.5%;
+    /* margin-right: 7.5%; */
+}
+
+/* 2. 슬라이더 끝에 가상의 투명 블록을 생성하여 강제로 스크롤 우측 여백 확보 */
+.info-slider::after {
+    content: '';
+    display: block;
+    /* .info-slider에 이미 gap: 15px; 가 적용되어 있으므로, 
+      완벽한 좌우 대칭(7.5%)을 맞추기 위해 gap 만큼의 공간을 빼고 너비를 지정합니다.
+    */
+    flex: 0 0 calc(7.5% - 15px);
 }
 
 .info-img-wrapper {
@@ -807,4 +818,37 @@ button {
 /* 토스트 알림이 화면에 보일 때 적용할 클래스 */
 .toast-message.show {
 	opacity: 0.8; /* 투명도를 1로 만들어 화면에 보이게 함 */
+}
+
+/* --- 혼주 및 신랑신부 이름 레이아웃 --- */
+.wedding-names {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.name-row {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.name-row .parents {
+    font-size: 0.55em; /* 부모님 성함: 작고 단아하게 */
+    color: #555;
+    font-weight: 400;
+}
+
+.name-row .relation {
+    font-size: 0.45em; /* '의 아들/딸': 더 작고 연하게 */
+    color: #888;
+    margin: 0 16px 0 6px; /* 이름 사이의 적절한 여백 */
+    font-weight: 300;
+}
+
+.name-row .groom-name, 
+.name-row .bride-name {
+    font-weight: 600; /* 신랑 신부 이름은 강조 */
+    color: var(--text-main);
 }
