@@ -1,6 +1,5 @@
 function initMusic() {
   var toggleBtn = document.getElementById('music-toggle');
-  var icon = toggleBtn ? toggleBtn.querySelector('.music-icon') : null;
 
   // ★ 여기에 원하는 YouTube 영상 ID를 입력하세요
   var youtubeId = '54skB_t06xY'; 
@@ -13,16 +12,6 @@ function initMusic() {
   var ytPlayer = null;
   var ytReady = false;
   var isPlaying = false; // 현재 재생 상태
-
-  // [UI 업데이트] 재생 상태에 따라 아이콘을 교체하는 함수
-  function updateIcon() {
-    if (!icon) return;
-    if (isPlaying) {
-      icon.style.display = 'inline';
-    } /*else {
-      icon.style.display = 'none';
-    }*/
-  }
 
   // [플레이어 생성] YouTube API 설정
   function createPlayer() {
@@ -52,11 +41,8 @@ function initMusic() {
           } else if (event.data === 2 || event.data === 0) {
             isPlaying = false;
           }
-		  console.log("재생중? "+isPlaying);
-          updateIcon(); // 상태 변경 후 UI 업데이트
         },
         onError: function () {
-		  console.log('onError 발생!!');
           // 영상 삭제, 비공개 등으로 로드 실패 시 버튼 숨기기
           if (toggleBtn) toggleBtn.style.display = 'none';
         }
@@ -112,8 +98,10 @@ function initMusic() {
 
       if (isPlaying) {
         ytPlayer.pauseVideo(); // 일시정지
+		toggleBtn.classList.toggle('stopped');
       } else {
         ytPlayer.playVideo();  // 다시 재생
+		toggleBtn.classList.toggle('stopped');
       }
       // 참고: 여기서 isPlaying을 직접 변경하지 않아도 onStateChange 이벤트가 발생하여 updateIcon이 호출됩니다.
     });

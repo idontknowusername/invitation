@@ -872,5 +872,9 @@ button {
   font-weight: bold;
 }
 
+.stopped {
+	background-color: rgba(210, 210, 210, 0.7);
+}
+
 /* 상태별 아이콘 표시 제어 */
 .music-icon { display: inline; } /* 초기: 숨김 */
