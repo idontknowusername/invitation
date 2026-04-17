@@ -852,3 +852,25 @@ button {
     font-weight: 600; /* 신랑 신부 이름은 강조 */
     color: var(--text-main);
 }
+
+
+/* --- 배경음악 컨트롤 버튼 --- */
+.bgm-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 12px 12px;
+  background-color: rgba(160, 195, 235, 0.7);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; /* 내부 요소 정렬을 위해 flex 사용 */
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 상태별 아이콘 표시 제어 */
+.music-icon { display: inline; } /* 초기: 숨김 */
