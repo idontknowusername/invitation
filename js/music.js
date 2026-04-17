@@ -2,7 +2,7 @@ function initMusic() {
   var toggleBtn = document.getElementById('music-toggle');
 
   // ★ 여기에 원하는 YouTube 영상 ID를 입력하세요
-  var youtubeId = '54skB_t06xY'; 
+  var youtubeId = 'fJBSsehNhUY'; 
 
   if (!youtubeId) return; // ID가 없으면 종료
 
@@ -44,6 +44,7 @@ function initMusic() {
         },
         onError: function () {
           // 영상 삭제, 비공개 등으로 로드 실패 시 버튼 숨기기
+		  // 로컬에서는 flex | 서버에서는 none으로 고정
           if (toggleBtn) toggleBtn.style.display = 'none';
         }
       }
