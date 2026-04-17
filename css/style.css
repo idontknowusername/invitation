@@ -229,7 +229,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* 상단/중앙/하단 여백 자동 분배 */
-    padding: 15vh 0 8vh; /* 상하단 여백 */
+    padding: 15vh 0 15vh; /* 상하단 여백 */
     box-sizing: border-box;
 }
 
