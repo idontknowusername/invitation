@@ -46,18 +46,22 @@ button {
 
 /* --- 2. Entrance (대기 화면) --- */
 .entrance-screen {
-    position: absolute;
+    position: fixed; /* absolute에서 fixed로 변경하여 뷰포트에 완전 고정 */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100dvh; /* 100% 대신 100dvh로 고정하여 본문이 길어져도 화면만 덮도록 수정 */
+    width: 100vw;
+    height: 100dvh;
     background: linear-gradient(180deg, var(--sea-color) 0%, var(--deep-sea) 100%);
-    z-index: 100;
+    z-index: 9000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    
+    /* 뒤쪽 스크롤 방지 핵심 CSS */
+    touch-action: none; /* 모바일에서 스와이프를 통한 스크롤 방지 */
+    overscroll-behavior: none; /* 스크롤 체이닝(전이) 차단 */
 }
 
 .entrance-screen.open {
@@ -503,12 +507,16 @@ button {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100dvh;
     background: rgba(0, 0, 0, 0.8);
     z-index: 2000;
     align-items: center;
     justify-content: center;
+    
+    /* 뒤쪽 스크롤 방지 핵심 CSS */
+    touch-action: none; /* 검은 배경 터치 시 뒤쪽 스크롤 방지 */
+    overscroll-behavior: contain; 
 }
 
 .modal-overlay.active {
@@ -521,6 +529,8 @@ button {
     max-height: 80vh;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    /* 사진 터치 시에도 스크롤 안 되도록 방지 */
+    touch-action: none; 
 }
 
 .lightbox-close {
@@ -537,10 +547,16 @@ button {
     background: white;
     width: 90%;
     max-width: 400px;
+    max-height: 85vh; /* 화면보다 길어지면 내부 스크롤 생성 */
+    overflow-y: auto; /* 내부 스크롤 허용 */
     border-radius: 15px;
     padding: 25px;
     text-align: center;
     position: relative;
+    
+    /* 박스 안에서는 정상적으로 터치/스크롤이 되도록 복구 */
+    touch-action: auto; 
+    overscroll-behavior: contain;
 }
 
 .modal-close-btn {
@@ -621,10 +637,15 @@ button {
     background-color: #3E3A36;
 }
 
+/* 수정 전: position: relative; */
 #particles {
-    position: relative;
-    z-index: 2;
-    pointer-events: none;
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh; /* 모바일 툴바 제외 꽉 찬 화면 */
+    z-index: 10; /* 다른 콘텐츠보다 위, 모달보다는 아래 */
+    pointer-events: none; /* 파티클 때문에 버튼 클릭이 안 되는 현상 방지 */
 }
 
 /* --- 예식정보 및 안내사항 (가로 슬라이더) --- */
