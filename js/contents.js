@@ -20,6 +20,8 @@ function loadConfigData() {
     // 1. 텍스트 콘텐츠 교체
     document.querySelectorAll('.groom-name').forEach(el => el.textContent = groomName);
     document.querySelectorAll('.bride-name').forEach(el => el.textContent = brideName);
+	document.querySelectorAll('.groom-first-name').forEach(el => el.textContent = groomName.substring(1));	// 신랑이름 성씨제거
+    document.querySelectorAll('.bride-first-name').forEach(el => el.textContent = brideName.substring(1)); // 신부이름 성씨제거
     document.querySelectorAll('.groom-name-en').forEach(el => el.textContent = groomNameEn);
     document.querySelectorAll('.bride-name-en').forEach(el => el.textContent = brideNameEn);
 	document.querySelectorAll('.groom-account').forEach(el => el.textContent = groomAccount);
@@ -265,7 +267,7 @@ window.closeLightbox = function () { document.getElementById('lightbox').classLi
 // --- 5. Entrance & Scroll Animation ---
 document.addEventListener("DOMContentLoaded", () => {
     // Entrance
-    const entrance = document.getElementById('entranceScreen');
+    //const entrance = document.getElementById('entranceScreen');
     const content = document.getElementById('mainContent');
     let isOpened = false;
 
@@ -278,14 +280,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const triggerOpening = () => {
         if (isOpened) return;
         isOpened = true;
-        entrance.classList.add('open');
+        //entrance.classList.add('open');
         content.style.opacity = '1';
         setTimeout(() => {
-            entrance.style.display = 'none';
+            //entrance.style.display = 'none';
             content.style.overflowY = 'auto';
         }, 1500);
     };
-
+	
     window.addEventListener('wheel', (e) => { if (e.deltaY > 0 && !isOpened) triggerOpening(); });
     let ts = 0;
     window.addEventListener('touchstart', (e) => ts = e.touches[0].clientY);
@@ -293,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isOpened && ts - e.touches[0].clientY > 50) triggerOpening();
     }, { passive: true });
     // 3초 후 애니메이션 자동 재생
-    setTimeout(triggerOpening, 3000);
+    setTimeout(triggerOpening, 1);
 
     // Scroll Animation (IntersectionObserver)
     const observerOptions = {
@@ -315,6 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const animateElements = document.querySelectorAll('.scroll-animate');
     animateElements.forEach(el => observer.observe(el));
 });
+
 
 // --- 6. 이미지 슬라이더 제어 ---
 document.addEventListener("DOMContentLoaded", function () {

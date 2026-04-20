@@ -67,7 +67,7 @@
 	
     <div class="container">
 		<canvas id="particles"></canvas>
-        <div class="main-content" id="mainContent">
+        <div class="main-content" id="mainContent"">
 			<!-- 배경음악 컨트롤 버튼 -->
 			<div id="music-toggle" class="bgm-btn" style="display: none;">
 			  <span class="music-icon">♪</span>
@@ -77,12 +77,12 @@
 
 			<!-- 최상단헤더 -->
 			<div class="invite-header">
-				<div class="main-visual-container scroll-animate hero-fullscreen">
+				<div class="main-visual-container hero-fullscreen">
 					<div class="hero-overlay"></div>
 					
 					<div class="hero-content-wrapper">
 						
-						<div class="hero-names-center">
+						<div class="hero-names-center box head-item-1">
 							<div class="hero-name-vertical groom-name">홍길동</div>
 							
 							<div class="hero-motif">
@@ -93,10 +93,14 @@
 						</div>
 
 						<div class="hero-info-bottom">
-							<hr class="hero-divider-white">
-							<p class="hero-date-text">2026년 7월 11일(토) 오후 12시 30분</p>
-							<p class="hero-location-text">한국은행</p>
-							<hr class="hero-divider-white">
+							<hr class="hero-divider-white box head-item-2">
+							<p class="hero-date-text box head-item-3">2026년 7월 11일(토) 오후 12시 30분</p>
+							<p class="hero-location-text box head-item-4">한국은행</p>
+							<hr class="hero-divider-white box head-item-5">
+						</div>
+						<div class="scroll-hint">
+							<p>Scroll Down</p>
+							<p>▼</p>
 						</div>
 					</div>
 				</div>
@@ -108,13 +112,13 @@
 				<h1 class="scroll-animate wedding-names">
 					<div class="name-row">
 						<span class="parents"><a class="groom-dad-name">김철수</a> · <a class="groom-mom-name">김영희</a></span>
-						<span class="relation">의 아들</span>
-						<span class="groom-name">홍길동</span>
+						<span class="relation">의 차남</span>
+						<span class="groom-first-name">길동</span>
 					</div>
 					<div class="name-row">
 						<span class="parents"><a class="bride-dad-name">이몽룡</a> · <a class="bride-mom-name">성춘향</a></span>
-						<span class="relation">의 &nbsp;&nbsp;딸</span>
-						<span class="bride-name">홍길순</span>
+						<span class="relation">의 장녀</span>
+						<span class="bride-first-name">길순</span>
 					</div>
 				</h1>
                 <p class="scroll-animate" style="color:#666; font-size:0.95rem; line-height:2.0; margin-top:30px;">
@@ -259,7 +263,7 @@
                 All rights reserved.
             </footer>
         </div>
-
+		<!--
         <div class="entrance-screen" id="entranceScreen">
             <div class="wave-bottom-edge">
                 <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -281,7 +285,7 @@
                 <p>▼</p>
             </div>
         </div>
-
+		-->
         <div id="contactModal" class="modal-overlay" onclick="closeModal('contactModal')">
             <div class="modal-box" onclick="event.stopPropagation()">
                 <button class="modal-close-btn" onclick="closeModal('contactModal')">&times;</button>
