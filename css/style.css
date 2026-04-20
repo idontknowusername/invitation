@@ -44,95 +44,6 @@ button {
     overflow-x: hidden; /* 전체 스크롤 방지(overflow:hidden) 제거, 가로만 방지 */
 }
 
-/* --- 2. Entrance (대기 화면) --- */
-.entrance-screen {
-    position: fixed; /* absolute에서 fixed로 변경하여 뷰포트에 완전 고정 */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    background: linear-gradient(180deg, var(--sea-color) 0%, var(--deep-sea) 100%);
-    z-index: 9000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
-    
-    /* 뒤쪽 스크롤 방지 핵심 CSS */
-    touch-action: none; /* 모바일에서 스와이프를 통한 스크롤 방지 */
-    overscroll-behavior: none; /* 스크롤 체이닝(전이) 차단 */
-}
-
-.entrance-screen.open {
-    transform: translateY(-110%);
-}
-
-/* 파도 데코레이션 - 화면 아래로 숨겨짐 */
-.wave-bottom-edge {
-    position: absolute;
-    bottom: -119px;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 101;
-}
-
-.wave-bottom-edge svg {
-    width: 100%;
-    height: 100%;
-    fill: var(--deep-sea);
-    display: block;
-}
-
-/* 요트 & 텍스트 */
-.yacht-container {
-    position: relative;
-    z-index: 102;
-    animation: float 3s ease-in-out infinite;
-}
-
-.yacht-img {
-    width: 250px;
-    height: auto;
-    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
-}
-
-.entrance-text {
-    color: white;
-    margin-top: 30px;
-    text-align: center;
-}
-
-.entrance-text p {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.entrance-text h1 {
-    font-size: 2rem;
-    font-weight: 300;
-    font-family: 'Montserrat', 'Gowun Batang', serif;
-}
-
-.scroll-hint {
-    position: absolute;
-    bottom: 2%;
-	left: 0;
-	width: 100%;
-    /*transform: translateX(-50%);*/
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
-	text-align: center;
-	font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
-
-	opacity: 0;
-    animation: 
-		fadeInUp 0.5s ease-out var(--delay, 0s) forwards, 
-		bounce 0.5s ease-in-out calc(var(--delay, 0s) + 0.2s) infinite;    
-}
-
 /* --- 3. Main Content (본문) --- */
 .main-content {
     position: relative; /* absolute에서 relative로 변경하여 문서 흐름에 맞게 배치 (브라우저 스크롤 유도) */
@@ -193,6 +104,23 @@ button {
     font-size: 1.6rem;
     margin-bottom: 20px;
     line-height: 1.4;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 2%;
+	left: 0;
+	width: 100%;
+    /*transform: translateX(-50%);*/
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+	text-align: center;
+	font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
+
+	opacity: 0;
+    animation: 
+		fadeInUp 0.5s ease-out var(--delay, 0s) forwards, 
+		bounce 0.5s ease-in-out calc(var(--delay, 0s) + 0.2s) infinite;    
 }
 
 /* --- 전체 화면 배경 & 오버레이 설정 --- */

@@ -264,12 +264,9 @@ window.openLightbox = function (src) {
 window.closeLightbox = function () { document.getElementById('lightbox').classList.remove('active'); };
 
 
-// --- 5. Entrance & Scroll Animation ---
+// --- 5. Header & Scroll Animation ---
 document.addEventListener("DOMContentLoaded", () => {
-    // Entrance
-    //const entrance = document.getElementById('entranceScreen');
     const content = document.getElementById('mainContent');
-    let isOpened = false;
 
     const params = new URLSearchParams(window.location.search);
     if (params.has('은행')) {
@@ -277,25 +274,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (acc) acc.style.display = 'none';
     }
 
-    const triggerOpening = () => {
-        if (isOpened) return;
-        isOpened = true;
-        //entrance.classList.add('open');
-        content.style.opacity = '1';
-        setTimeout(() => {
-            //entrance.style.display = 'none';
-            content.style.overflowY = 'auto';
-        }, 1500);
-    };
-	
-    window.addEventListener('wheel', (e) => { if (e.deltaY > 0 && !isOpened) triggerOpening(); });
-    let ts = 0;
-    window.addEventListener('touchstart', (e) => ts = e.touches[0].clientY);
-    window.addEventListener('touchmove', (e) => {
-        if (!isOpened && ts - e.touches[0].clientY > 50) triggerOpening();
-    }, { passive: true });
-    // 3초 후 애니메이션 자동 재생
-    setTimeout(triggerOpening, 1);
+	content.style.opacity = '1';
+	content.style.overflowY = 'auto';
 
     // Scroll Animation (IntersectionObserver)
     const observerOptions = {
