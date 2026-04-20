@@ -235,7 +235,7 @@ button {
 
 .hero-divider-white {
     border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.9); /* 반투명 흰색 선 */
+    border-top: 1px solid rgba(255, 255, 255, 0.9); /* 반투명 흰색 선 */
 	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
     margin: 18px 0;
 }
