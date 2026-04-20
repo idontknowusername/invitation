@@ -144,7 +144,6 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-	background: rgba(0, 0, 0, 0.1);
     /*background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(60, 81, 114, 0.8) 100%);*/
     z-index: 1;
 }
@@ -184,14 +183,14 @@ button {
     letter-spacing: 20px;
     margin-bottom: -20px; /* 마지막 글자 간격 보정 */
     
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* 가독성을 위한 은은한 그림자 */
+    text-shadow: 0 0 6px rgba(0, 0, 0, 1.0); /* 가독성을 위한 은은한 그림자 */
 }
 
 .hero-motif {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.8;
+    opacity: 1.0;
 }
 
 /* --- 최상단 헤더 메인화면 텍스트 애니메이션 순차적용 --- */
