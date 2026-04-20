@@ -129,7 +129,6 @@ button {
     width: 100%;
     height: 100dvh; /* vh 대신 dvh 적용: 모바일 툴바 크기 변화에 동적으로 반응 */
     background-image: url('https://lh3.googleusercontent.com/d/1_WYOafkYL7ZOqZPRan8mkwaRpJA5fU3W');
-	/*background-image: url('https://lh3.googleusercontent.com/d/1MpShE97cz1Oy2l4wo8x1vtROreghe3pM');*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -145,8 +144,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(60, 81, 114, 0.8) 100%); */
-	background: linear-gradient(180deg, rgba(13, 71, 161, 0.3) 0%, rgba(0, 0, 0, 0.65) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(60, 81, 114, 0.8) 100%);
     z-index: 1;
 }
 
