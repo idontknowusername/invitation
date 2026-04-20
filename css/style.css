@@ -2,9 +2,12 @@
 :root {
     --sea-color: #58a6ff;
     --deep-sea: #0d47a1;
-    --sand-bg: #fdfbf7;
     --text-main: #333;
-    --accent: #0d47a1;
+	--sand-bg: #FDF6F5;
+    --accent: #2C5F2D;
+	/*
+	--sand-bg: #FFF5F0;
+    --accent: #BF360C;*/
 
     /* 파스텔 톤 버튼 색상 */
     --btn-pastel-bg: #b3e5fc;
