@@ -416,7 +416,30 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+}
+
+.map-area h4 {
+	color: #000;
+	text-shadow:
+		-2px -2px 0 #fff,  
+		2px -2px 0 #fff,
+		-2px  2px 0 #fff,
+		2px  2px 0 #fff; /* 상하좌우 4방향에 그림자 배치 */
+	/* text-shadow: 0 0 6px rgba(0, 0, 0, 1.0); /* 가독성을 위한 은은한 그림자 */
+}
+
+.map-area h5 {
+	color: #000;
+	text-shadow:
+		-1px -1px 0 #fff,  
+		1px -1px 0 #fff,
+		-1px  1px 0 #fff,
+		1px  1px 0 #fff; /* 상하좌우 4방향에 그림자 배치 */
+	/* text-shadow: 0 0 6px rgba(0, 0, 0, 1.0); /* 가독성을 위한 은은한 그림자 */
+}
+
+.map-area span {
+	color: transparent !important;
 }
 
 .transport-info {

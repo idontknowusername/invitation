@@ -49,4 +49,33 @@ scriptMap.onload = () => {
 		},
 		animation: naver.maps.Animation.BOUNCE
 	});
+		
+	// 5. Floating 텍스트 추가
+	var contentString = [
+		'<div class="iw_inner">',
+		'   <h4>한국은행</h4>',
+		'   <h5>방문자센터</h5>',
+		'</div>'
+	].join('');
+	
+	var infowindow = new naver.maps.InfoWindow({
+		content: contentString,
+		maxWidth: 240,
+		backgroundColor: "#ffffff00",
+		borderColor: "#ffffff00",
+		borderWidth: 1,
+		//anchorSize: new naver.maps.Size(30, 30),
+		anchorColor: "#ffffff00",
+		pixelOffset: new naver.maps.Point(0, 115)
+	});
+
+	naver.maps.Event.addListener(marker, "click", function(e) {
+		if (infowindow.getMap()) {
+			infowindow.close();
+		} else {
+			infowindow.open(map, marker);
+		}
+	});
+	infowindow.open(map, marker);
 };
+
