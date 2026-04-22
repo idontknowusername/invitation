@@ -1,6 +1,6 @@
 function initMusic() {
   var toggleBtn = document.getElementById('music-toggle');
-  var youtubeId = 'fJBSsehNhUY'; 
+  var youtubeId = 'GR6L_C0Ii6s'; 
   
   // 현재 환경이 로컬 파일(file://)인지 확인
   var isLocalFile = window.location.protocol === 'file:';
@@ -61,20 +61,28 @@ function initMusic() {
   }
 
   function addUserGestureListeners(playFn) {
-    var events = ['click', 'touchstart', 'scroll'];
+    // 수정됨: scroll 제외. 브라우저가 오디오 재생을 허락하는 명시적 제스처만 포함.
+    var events = ['click', 'touchend', 'keydown']; 
     var triggered = false;
 
-    function handler() {
+    function handler(e) {
       if (triggered) return;
+      
+      // 키보드 이벤트일 경우 Enter나 Space가 아닐 때는 무시하는 로직을 추가할 수도 있습니다.
+      // if (e.type === 'keydown' && e.code !== 'Space' && e.code !== 'Enter') return;
+
       triggered = true;
       playFn();
+      
+      // 한 번 실행된 후에는 모든 전역 리스너 해제
       events.forEach(function (evt) {
-        document.removeEventListener(evt, handler, true);
+        document.removeEventListener(evt, handler, { capture: true });
       });
     }
 
     events.forEach(function (evt) {
-      document.addEventListener(evt, handler, { capture: true, passive: true, once: false });
+      // passive: true는 스크롤 성능을 위한 것이므로 click/keydown 등에는 굳이 필요하지 않습니다.
+      document.addEventListener(evt, handler, { capture: true, once: false });
     });
   }
 
