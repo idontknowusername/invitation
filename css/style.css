@@ -2,7 +2,7 @@
 :root {
     --sea-color: #58a6ff;
     --deep-sea: #0d47a1;
-    --text-main: #333;
+    --text-main: #111;
 	--sand-bg: #FDF6F5;
     --accent: #2C5F2D;
 	/*
@@ -276,7 +276,7 @@ button {
 
 .time-text {
     font-size: 0.9rem;
-    color: #888;
+    color: #666;
     margin-bottom: 30px;
     letter-spacing: 2px;
     font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
@@ -293,7 +293,7 @@ button {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
-    color: #555;
+    color: #333;
 }
 
 .calendar-table th {
@@ -326,12 +326,12 @@ button {
     margin: 30px 0;
     text-align: center;
     font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
-    color: #555;
+    color: #333;
 }
 
 .timer-prefix {
     font-size: 0.8rem;
-    color: #999;
+    color: #666;
     margin-bottom: 10px;
     letter-spacing: 1px;
 }
@@ -357,14 +357,14 @@ button {
 
 .timer-numbers .label {
     font-size: 0.6rem;
-    color: #aaa;
+    color: #999;
     margin-right: 8px;
     margin-left: 2px;
 }
 
 .timer-numbers .colon {
     font-size: 1rem;
-    color: #ccc;
+    color: #999;
     margin: 0 5px;
     animation: blink 1s infinite;
 }
@@ -416,13 +416,13 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
+    color: #666;
 }
 
 .transport-info {
     text-align: left;
     font-size: 0.9rem;
-    color: #555;
+    color: #333;
     line-height: 1.6;
 }
 
@@ -561,6 +561,7 @@ button {
 
 .list-row span {
     font-size: 0.95rem;
+	color: #666;
 }
 
 .list-row small {
@@ -779,13 +780,13 @@ button {
 
 .name-row .parents {
     font-size: 0.55em; 
-    color: #555;
+    color: #333;
     font-weight: 400;
 }
 
 .name-row .relation {
     font-size: 0.45em; 
-    color: #888;
+    color: #666;
     margin: 0 10px 0 6px; 
     font-weight: 300;
 }
