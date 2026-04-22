@@ -451,9 +451,10 @@ button {
 
 .transport-item {
     margin-bottom: 15px;
-	background-color: #ffffff80;
+	background-color: #ffffffcc;
 	padding: 5px 10px;
 	border-radius: 10px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .transport-item b {
@@ -662,8 +663,9 @@ button {
     gap: 15px;
     padding: 0 0 20px 0; 
     touch-action: pan-y pan-x;
-    scrollbar-width: thin;
-    scrollbar-color: #d1d1d1 transparent;
+	scrollbar-width: none;
+    /* scrollbar-width: thin;
+    scrollbar-color: #d1d1d1 transparent;*/
 }
 
 .info-slider::-webkit-scrollbar {
@@ -681,7 +683,7 @@ button {
 .info-slide {
     flex: 0 0 85%;
     scroll-snap-align: center;
-    min-height: 480px; 
+    min-height: 400px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -736,6 +738,7 @@ button {
 }
 
 .info-slide-check {
+	width: 95%;
     font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
     font-size: 0.9rem;
     line-height: 1.8;
@@ -743,11 +746,9 @@ button {
     text-align: left;
     padding: 12px 20px;
     margin: 10px 0;
-    border-radius: 6px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    border-radius: 10px;
     letter-spacing: 1px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     text-decoration: none;
 }
 
@@ -762,6 +763,27 @@ button {
     color: #555;
     border: 1px solid #eaeaea;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* Dot 컨테이너 및 디자인 */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #333;
 }
 
 .acc-name {

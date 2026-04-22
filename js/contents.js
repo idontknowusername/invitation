@@ -299,23 +299,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// --- 6. 이미지 슬라이더 제어 ---
+// --- 6. 이미지 슬라이더 제어 및 Dot, 애니메이션 통합 ---
 document.addEventListener("DOMContentLoaded", function () {
+    const infoSection = document.querySelector('.info-section');
     const slider = document.querySelector('.info-slider');
-    if (!slider) return; // 슬라이더가 없으면 종료
+    
+    if (!infoSection || !slider) return; // 요소가 없으면 종료
 
     const slides = slider.querySelectorAll('.info-slide');
+    const dots = infoSection.querySelectorAll('.dot');
 
-    // 현재 중앙에 가장 가까운 슬라이드를 찾아 활성화하는 함수
+    // 1. Dot 클릭 시 해당 슬라이드로 이동하는 이벤트 추가
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            // 해당 인덱스의 슬라이드가 존재하는지 확인 후 이동
+            if (slides[index]) {
+                const targetLeft = slides[index].offsetLeft;
+                slider.scrollTo({
+                    left: targetLeft,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 2. 현재 중앙에 가장 가까운 슬라이드 및 Dot 활성화 로직
     function updateActiveSlide() {
         const sliderRect = slider.getBoundingClientRect();
         // 슬라이더의 시각적 중앙 X 좌표
         const sliderCenterX = sliderRect.left + (sliderRect.width / 2);
         
         let closestSlide = null;
+        let closestIndex = 0; // 활성화할 Dot의 인덱스를 저장할 변수
         let minDistance = Infinity;
 
-        slides.forEach(slide => {
+        slides.forEach((slide, index) => {
             const slideRect = slide.getBoundingClientRect();
             // 각 슬라이드의 중앙 X 좌표
             const slideCenterX = slideRect.left + (slideRect.width / 2);
@@ -326,13 +344,23 @@ document.addEventListener("DOMContentLoaded", function () {
             if (distance < minDistance) {
                 minDistance = distance;
                 closestSlide = slide;
+                closestIndex = index; // 가장 가까운 슬라이드의 인덱스 저장
             }
         });
 
-        // 가장 가까운 슬라이드에만 'is-active' 클래스 부여
         if (closestSlide) {
+            // 슬라이드 'is-active' 클래스 부여
             slides.forEach(slide => slide.classList.remove('is-active'));
             closestSlide.classList.add('is-active');
+
+            // 해당하는 Dot에 'active' 클래스 부여 동기화
+            dots.forEach((dot, index) => {
+                if (index === closestIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
     }
 
@@ -348,8 +376,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 초기 화면 로드 시에도 한 번 실행하여 첫 슬라이드 활성화
+    // 초기 화면 로드 시에도 한 번 실행하여 첫 슬라이드/Dot 활성화
     updateActiveSlide();
+
+    // 3. 최초 화면 진입 시 스와이프 힌트 (Peek 애니메이션)
+    // 슬라이드가 2개 이상일 때만 실행
+    if (slides.length > 1) {
+        const observerOptions = {
+            root: null,
+            threshold: 0.5 // 요소가 화면에 50% 이상 보일 때 트리거
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 화면에 진입하고 0.5초 대기
+                    setTimeout(() => {
+                        // 첫 번째 슬라이드 너비의 30%만큼 살짝 이동
+                        const peekAmount = slides[0].offsetWidth * 0.3;
+                        
+                        slider.scrollBy({
+                            left: peekAmount,
+                            behavior: 'smooth'
+                        });
+
+                        // 0.6초 뒤 원래 자리로 복귀
+						/*
+                        setTimeout(() => {
+                            slider.scrollTo({
+                                left: 0,
+                                behavior: 'smooth'
+                            });
+                        }, 600);
+						*/
+                    }, 500);
+
+                    // 한 번만 실행되도록 관찰 해제
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(infoSection);
+    }
 });
 
 // --- 7. html 파싱 및 클립보드 복사 ---
