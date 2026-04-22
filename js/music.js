@@ -26,6 +26,7 @@ function initMusic() {
       videoId: youtubeId,
       playerVars: {
         autoplay: 1,
+		mute: 1,
         loop: 1,
         playlist: youtubeId,
         controls: 0,
@@ -62,15 +63,12 @@ function initMusic() {
 
   function addUserGestureListeners(playFn) {
     // 수정됨: scroll 제외. 브라우저가 오디오 재생을 허락하는 명시적 제스처만 포함.
-    var events = ['click', 'touchend', 'keydown']; 
+	var events = ['click', 'touchstart', 'scroll'];
+    //var events = ['click', 'touchend', 'keydown'];
     var triggered = false;
 
     function handler(e) {
       if (triggered) return;
-      
-      // 키보드 이벤트일 경우 Enter나 Space가 아닐 때는 무시하는 로직을 추가할 수도 있습니다.
-      // if (e.type === 'keydown' && e.code !== 'Space' && e.code !== 'Enter') return;
-
       triggered = true;
       playFn();
       
@@ -88,6 +86,7 @@ function initMusic() {
 
   addUserGestureListeners(function () {
     if (!isLocalFile && ytPlayer && ytReady && !isPlaying) {
+	  ytPlayer.unMute()
       tryPlay();
     }
   });
