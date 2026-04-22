@@ -828,23 +828,3 @@ button {
 
 /* 상태별 아이콘 표시 제어 */
 .music-icon { display: inline; }
-
-/* --- 오버레이 테스트 버튼 --- */
-#overlay-test-btn {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  z-index: 9999;
-  background-color: rgba(0, 255, 0, 0.8);
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex; 
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
-}
