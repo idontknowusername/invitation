@@ -669,15 +669,7 @@ button {
 }
 
 .info-slider::-webkit-scrollbar {
-    height: 4px; 
-}
-.info-slider::-webkit-scrollbar-track {
-    background: transparent;
-    margin: 0 40px; 
-}
-.info-slider::-webkit-scrollbar-thumb {
-    background: #d1d1d1; 
-    border-radius: 10px;
+    display: none; 
 }
 
 .info-slide {
