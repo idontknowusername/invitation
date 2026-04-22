@@ -1,8 +1,8 @@
 // --- 0. 환경설정 데이터 로드 ---
 function loadConfigData() {
     // env.js가 로드되지 않았을 경우를 대비한 기본값 설정 (혹은 빈 문자열)
-    const groomName = window.LOCAL_GROOM_NAME || "홍길동";
-    const brideName = window.LOCAL_BRIDE_NAME || "홍길순";
+    const groomName = window.LOCAL_GROOM_NAME || "박수호";
+    const brideName = window.LOCAL_BRIDE_NAME || "서연수";
     const groomNameEn = window.LOCAL_GROOM_NAME_EN || "John Doe";
     const brideNameEn = window.LOCAL_BRIDE_NAME_EN || "Jane Doe";
 	const groomAccount = window.LOCAL_GROOM_ACC || "국민 123-456";
