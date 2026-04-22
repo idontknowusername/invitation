@@ -233,10 +233,10 @@ generateCalendar();
 // --- 갤러리 생성을 위한 이미지 URL set ---
 const prefix = "https://lh3.googleusercontent.com/d/";
 const galleryImgs = [
-	"1viYAbQcIhvBrajbfDOuhV7zLK1yvtoZu", "1g_X2nyORCypt1SueDeR1A27UCdygjeX1", "1L_ffV-drl2SJ15P1WojPqTJdkv3hjOCy",
-	"1oisMZ6ydAX901qU5eUSVTXTP_feSpVcp", "1TMWZNqVVLmuo9YIq7Ww_4fRilPsj4rbR", "1EeFn-GoGc3eXtNEgwQ8BJvJ3lDu-qrQ6",
-	"15a-UfJvRs3iCY1DuU7Z8VUJ81sKJBTlg", "1v5eYfqj479uK_ndM_JDYdG2uQZjRf0TL", "1PC8Kqz0-hzj-EFdNODLVC6pOQ1qTGhRp",
-	"1DnlLc9YtbdUopzMwhCXqlp8cscmPHqg8", "1Mx5OTn-klbXo2BW75WIerCTd0PcTN4dx", "1BisJMUo76zMx8KskGT7ggkkp3j7m6Av0"
+	"1CLprZMXu7WmoJB9aE0_h8Bn3eh95eviM", "1suJp41nD64JP3-cxMGzitWo2OsKwfV7Z", "15jrPFnjjDwiOwRqPl-XqsZR7fkCHkbCk",
+	"1iLg3DQNfl1SnEMCaDj9UW5Q8TciF16Lc", "1QWjOaJbrV392zBJqg4XFE0cxHA9PQVrg", "1aqF6sDQ_gvxX3GVyPYulylCBnvTLzycI",
+	"1NOn5henB40d4vJ2-WaC80xG7MbHMUYab", "1QGqJpNKGG9xw_OMs05UPOMfy7jTeGdfF", "1nHBWM38rsXUBCqYEc4W6KIPmMSyQjH2A",
+	"1M5I86rnPTKh_XNY1bJTISIdpg5TbFAgg", "1kHmktaAi9mKhuvEUTYioc406jA7G_bXq", "1TcTf9JVN_1NEoqwWSZ6YJUREYhp0-ejY"
 	]
 
 // --- 3. 갤러리 생성 ---
