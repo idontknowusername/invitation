@@ -240,13 +240,13 @@ const galleryImgs = [
 	]
 
 // --- 3. 갤러리 생성 ---
+const galleryUrls = Array.from({ length: 12 }, (_, i) => `${prefix}${galleryImgs[i]}`);
 const galleryGrid = document.getElementById('galleryGrid');
 if (galleryGrid) {
-    const imageUrls = Array.from({ length: 12 }, (_, i) => `${prefix}${galleryImgs[i]}`);
-    imageUrls.forEach(url => {
+    galleryUrls.forEach((url, index) => {
         const div = document.createElement('div');
         div.className = 'gallery-item';
-        div.onclick = () => openLightbox(url);
+        div.onclick = () => openLightbox(index);
         const img = document.createElement('img');
         img.src = url; img.loading = "lazy";
         div.appendChild(img);
@@ -257,11 +257,71 @@ if (galleryGrid) {
 // --- 4. 모달 제어 ---
 window.openModal = function (id) { document.getElementById(id).classList.add('active'); };
 window.closeModal = function (id) { document.getElementById(id).classList.remove('active'); };
-window.openLightbox = function (src) {
-    document.getElementById('lightboxImg').src = src;
+
+// 라이트박스: 현재 보고 있는 사진의 인덱스를 추적
+let currentLightboxIndex = 0;
+
+function showLightboxImage(index, direction) {
+    // 인덱스 순환 처리 (마지막 -> 처음, 처음 -> 마지막)
+    const total = galleryUrls.length;
+    currentLightboxIndex = (index + total) % total;
+
+    const img = document.getElementById('lightboxImg');
+    img.src = galleryUrls[currentLightboxIndex];
+
+    // 방향에 맞는 슬라이드 애니메이션 적용 (재생을 위해 클래스 제거 후 리플로우)
+    img.classList.remove('slide-from-right', 'slide-from-left');
+    if (direction === 'next') {
+        void img.offsetWidth; // 리플로우 강제 -> 애니메이션 재시작
+        img.classList.add('slide-from-right');
+    } else if (direction === 'prev') {
+        void img.offsetWidth;
+        img.classList.add('slide-from-left');
+    }
+}
+
+window.openLightbox = function (index) {
+    showLightboxImage(index);
     document.getElementById('lightbox').classList.add('active');
 };
 window.closeLightbox = function () { document.getElementById('lightbox').classList.remove('active'); };
+window.lightboxPrev = function () { showLightboxImage(currentLightboxIndex - 1, 'prev'); };
+window.lightboxNext = function () { showLightboxImage(currentLightboxIndex + 1, 'next'); };
+
+// 라이트박스 좌우 스와이프 / 키보드 네비게이션
+document.addEventListener("DOMContentLoaded", function () {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    if (!lightbox || !lightboxImg) return;
+
+    // 터치 스와이프 (모바일)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const SWIPE_THRESHOLD = 50; // 스와이프로 인정할 최소 이동 거리(px)
+
+    lightboxImg.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    lightboxImg.addEventListener('touchend', function (e) {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        // 가로 이동이 세로 이동보다 크고 임계값을 넘을 때만 슬라이드
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
+            if (dx < 0) lightboxNext(); // 왼쪽으로 스와이프 -> 다음 사진
+            else lightboxPrev();        // 오른쪽으로 스와이프 -> 이전 사진
+        }
+    }, { passive: true });
+
+    // 키보드 좌우 화살표 (데스크탑)
+    document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowLeft') lightboxPrev();
+        else if (e.key === 'ArrowRight') lightboxNext();
+        else if (e.key === 'Escape') closeLightbox();
+    });
+});
 
 
 // --- 5. Header & Scroll Animation ---
