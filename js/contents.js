@@ -329,10 +329,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById('mainContent');
 
     const params = new URLSearchParams(window.location.search);
+	/*
     if (params.has('은행')) {
         const acc = document.getElementById('accountArea');
         if (acc) acc.style.display = 'none';
     }
+	*/
 
 	content.style.opacity = '1';
 	content.style.overflowY = 'auto';
